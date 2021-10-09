@@ -16,16 +16,14 @@ export default class Events extends React.Component{
 
 
 
-    getEventList=()=>{
-        var ref = db.collection('events')
-        .onSnapshot((snapshot)=>{
-            var list = snapshot.docs.map(doc=>{
-                doc.data()
+    getEventList=async()=>{
+        var ref = await db.collection('events').get()
+            ref.docs.map(doc=>{
+                this.setState({
+                    events:[...this.state.events, doc.data()]
+                })
             })
-            this.setState({
-                events:list
-            })
-        })
+            
         console.log(this.state.events)
     }
 
@@ -39,7 +37,7 @@ export default class Events extends React.Component{
         </ListItem>
     }
 
-    componentDidMount(){
+    componentDidMount=async()=>{
         console.log('Mount')
         this.getEventList();
     }
@@ -51,11 +49,17 @@ export default class Events extends React.Component{
             <View style={styles.container}>
                 <Text style={styles.title}>Events</Text>
 
+                {console.log('Events')}
+
                 <Text style={styles.eventTitle}>15 OCT - Dussehra</Text>
 
                 <FlatList
                     data={this.state.events}
-                    renderItem={this.renderItem}
+                    renderItem={({item})=>{
+                        <View>
+                            <Text>{'Event' + item.name}</Text>
+                        </View>
+                    }}
                     keyExtractor={(item, index)=>index.toString()}
                 />
 

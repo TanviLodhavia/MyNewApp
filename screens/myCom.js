@@ -21,6 +21,7 @@ export default class MyCom extends React.Component{
                     style={styles.categories}
                     
                     onPress={()=>{
+                        console.log('Events')
                         this.props.navigation.navigate('Events')
                     }}
                 >
