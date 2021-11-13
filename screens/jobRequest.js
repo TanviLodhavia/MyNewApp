@@ -45,6 +45,7 @@ export default class JobRequest extends React.Component{
 
                 <Text style={styles.title}>Request Job</Text>
 
+
                 <Input
                     placeholder="I can..."
                     leftIcon={
@@ -111,13 +112,18 @@ export default class JobRequest extends React.Component{
 
                
                <DropDownPicker
-                    placeholder='select a job'
+                    placeholder='Select a Job'
+                    containerStyle={{backgroundColor:'#000FF'}}
                     items=
                     {[
-                            {label:"cook",value:'cook'},
-                            {label:'maid', value:'maid', selected:true}
+                            {label:"Cook",value:'Cook'},
+                            {label:'Maid', value:'Maid'}
                     ]}
+                    
                     defaultValue={this.state.jobTitle}
+                    min={1}
+                    max={5}
+                    dropDownMaxHeight={200}
                     onChangeItem={(item)=>{
                         console.log(item.label, item.value)
                     }}

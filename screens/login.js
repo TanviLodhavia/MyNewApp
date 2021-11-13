@@ -8,6 +8,7 @@ import {
     StyleSheet,
     TouchableOpacity,
     Alert,
+    Image,
     ScrollView} from 'react-native';
 import {Input, Icon} from 'react-native-elements'
 import db from '../config';
@@ -240,17 +241,24 @@ showModal = ()=>{
           
         <View style={{justifyContent:'center', alignItems:'center'}}>
           
+        {/*<Image source={require('.././images/lockscreenlogo.png')}/>*/}
+
           <Text style={styles.title}>Chore Cats</Text>
         </View>
         <View>
+          
+          
+          
+          <Text style={styles.subtext}>To Continue Please Login</Text>
 
           <Input
             leftIcon={
               <Icon
-                type='feather' name='mail' color="#853355"
+                type='feather' name='mail' color="#E84A3F"
               />
             }
             style={styles.loginBox}
+            label='E-mail'
             placeholder="abc@example.com"
             keyboardType ='email-address'
             onChangeText={(text)=>{
@@ -262,10 +270,11 @@ showModal = ()=>{
           <Input
           leftIcon={
             <Icon
-              type='feather' name='lock' color="#853355"
+              type='feather' name='key' color="#E84A3F"
             />
           }
           style={styles.loginBox}
+          label='Password'
           secureTextEntry = {true}
           placeholder="Enter Password"
           onChangeText={(text)=>{
@@ -275,19 +284,19 @@ showModal = ()=>{
           }}
         />
         <TouchableOpacity
-           style={[styles.button,{marginBottom:20, marginTop:20}]}
+           style={[styles.loginbutton,{marginBottom:20, marginTop:20}]}
            onPress = {()=>{
              this.userLogin(this.state.emailId, this.state.password)
            }}
            >
-           <Text style={styles.buttonText}>Login</Text>
+           <Text style={{fontWeight:'bold', fontSize:20, color:'#FFFFFF'}}>Log In</Text>
          </TouchableOpacity>
 
          <TouchableOpacity
-           style={styles.button}
+           style={styles.signupbutton}
            onPress={()=>this.setState({ isModalVisible:true})}
            >
-           <Text style={styles.buttonText}>Sign Up</Text>
+           <Text style={{color:'#062B3B', fontWeight:'bold', fontSize:20}}>Sign Up</Text>
          </TouchableOpacity>
       </View>
     </View>
@@ -311,7 +320,7 @@ const styles = StyleSheet.create({
    fontSize:65,
    fontWeight:'300',
    paddingBottom:30,
-   color : '#034732',
+   color : '#E84A3F',
    fontWeight:'bold'
  },
  loginBox:{
@@ -322,6 +331,13 @@ const styles = StyleSheet.create({
    fontSize: 20,
    margin:10,
    paddingLeft:10
+ },
+ subtext:{
+   color:'#062B3C',
+   fontWeight:'bold',
+   marginBottom:30,
+   textAlign:'center',
+   fontSize:19
  },
  KeyboardAvoidingView:{
    flex:1,
@@ -378,14 +394,14 @@ const styles = StyleSheet.create({
    marginTop:5,
  },
 
- button:{
+ signupbutton:{
    width:300,
    height:40,
    justifyContent:'center',
    alignItems:'center',
    alignSelf:'center',
    borderRadius:25,
-   backgroundColor:"#EF476F",
+   backgroundColor:"#E84A3F",
    shadowColor: "#000",
    shadowOffset: {
       width: 0,
@@ -396,6 +412,25 @@ const styles = StyleSheet.create({
    elevation: 16,
    padding: 10
  },
+
+ loginbutton:{
+  width:300,
+  height:40,
+  justifyContent:'center',
+  alignItems:'center',
+  alignSelf:'center',
+  borderRadius:25,
+  backgroundColor:"#FDA539",
+  shadowColor: "#000",
+  shadowOffset: {
+     width: 0,
+     height: 8,
+  },
+  shadowOpacity: 0.30,
+  shadowRadius: 10.32,
+  elevation: 16,
+  padding: 10
+},
  buttonText:{
    color:'#ffff',
    fontWeight:'200',
